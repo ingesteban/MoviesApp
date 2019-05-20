@@ -65,9 +65,7 @@ En esta capa se manejan la interfaz gráfica de la aplicación.
     - El principio de responsabilidad única consiste en que cada clase que se cree debe tener una única responsabilidad, 
     es decir que cada clase debe ser creada con unobjetivo especifico y debe ejecutar funcionalidades proporcionadas por el software.
     El proposito del este principio es separar los comportamientos de tal manera que en una clase se debe contener una única 
-    razón para cambiar, si una clase contiene mas de un mótivo de cambio entonces se deben dividir las responsabilidades.
-  
-    
+    razón para cambiar, si una clase contiene mas de un mótivo de cambio entonces se deben dividir las responsabilidades.    
 
 2. Qué características tiene, según su opinión, un “buen” código o código limpio?
   - En mi opinión un código limpio debe tener una arquitectura propuesta, debe estar basado en patrones y principios de desarrollo de software tales como :
@@ -80,4 +78,11 @@ En esta capa se manejan la interfaz gráfica de la aplicación.
       - El código debe ser legible.
       
   Todas esta crácteristicas a traves de la experiencia las he podido comprobar en diferentes sistemas con la aplicación de código limpio y de buenas prácticas sugeridas por Bob Martin "El tio Bob."
-      
+   
+   
+# Clean Code Architecture
+
+Para el desarrollo de este proyecto utilice clean code como se describe en este gráfico :
+
+![Clean Code Architecture](https://estebanbarrios.dev/img/clean-code.png)
+
