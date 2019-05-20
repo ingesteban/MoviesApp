@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="api_key_the_movie">0d677b16a44d2b5a79edf325bc1ee9b7</string>
+
+    <string name="base_url_the_movie">https://api.themoviedb.org/3/</string>
+
+    <string name="base_url_image_the_movie">https://image.tmdb.org/t/p/w500/</string>
+
+    <string name="youtube_key">AIzaSyAonbhJeDhO1QmTuqq-iFwnQwZKvua-9Ss</string>
+
+
+</resources>

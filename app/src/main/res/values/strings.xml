@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Test</string>
+
+    <string name="splash_title">Movies</string>
+    <string name="title_permissions">Permisos no otorgados</string>
+    <string name="information_permissions">Usted debe dar acceso a todos los permisos requeridos</string>
+    <string name="cd_logo">Logo</string>
+
+
+    <string name="button_top_rated">Top Rated</string>
+    <string name="button_upcoming">Upcoming</string>
+    <string name="button_popular">Popular</string>
+
+    <string name="list_movie_videos_string_empty">This movie doesn\'t have videos</string>
+
+    <string name="movie_detail_overview">Overview</string>
+    <string name="movie_detail_is_for_adult">Is for adult ?</string>
+    <string name="movie_detail_release_date">Release date</string>
+
+    <string name="button_watch_videos">Watch Videos</string>
+    <string name="movie_videos_videos_of">Videos of </string>
+    <string name="error">An error occurred, please update or try later</string>
+
+
+
+
+
+</resources>

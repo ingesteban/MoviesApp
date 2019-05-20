@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.core.widget.NestedScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:background="@color/colorGrayLight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".ui.movie.MovieActivity"
+            tools:showIn="@layout/activity_movie">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                    android:id="@+id/movie_detail_overview"
+                    android:text="@string/movie_detail_overview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="8dp"
+                    android:layout_marginTop="18dp"/>
+            <TextView
+                    android:id="@+id/overview_movie"
+                    android:layout_below="@+id/movie_detail_overview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="8dp"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                    android:layout_centerInParent="true"
+                    android:id="@+id/movieLoading"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:lottie_rawRes="@raw/movie_loader"
+                    app:lottie_loop="true"
+                    app:lottie_autoPlay="true"
+                    android:scaleType="centerCrop"
+            />
+
+            <TextView
+                    android:id="@+id/movie_detail_is_for_adult"
+                    android:text="@string/movie_detail_is_for_adult"
+                    android:layout_below="@+id/overview_movie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="8dp"
+                    android:layout_marginTop="18dp"/>
+            <TextView
+                    android:id="@+id/is_for_adult"
+                    android:layout_below="@+id/movie_detail_is_for_adult"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="8dp"/>
+
+            <TextView
+                    android:id="@+id/movie_detail_release_date"
+                    android:text="@string/movie_detail_release_date"
+                    android:layout_below="@+id/is_for_adult"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="8dp"
+                    android:layout_marginTop="18dp"/>
+            <TextView
+                    android:id="@+id/release_date"
+                    android:layout_below="@+id/movie_detail_release_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="8dp"/>
+
+            <Button
+                    android:id="@+id/check_videos"
+                    android:layout_below="@+id/release_date"
+                    android:text="@string/button_watch_videos"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_button"
+                    android:layout_marginBottom="20dp"
+                    android:layout_margin="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginTop="12dp"/>
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

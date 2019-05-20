@@ -1,0 +1,11 @@
+<resources>
+
+    <dimen name="text_size_splash">50sp</dimen>
+    <dimen name="width_image_splash">250dp</dimen>
+    <dimen name="height_image_splash">300dp</dimen>
+
+    <dimen name="components_margin_mid">20dp</dimen>
+    <dimen name="components_margin">10dp</dimen>
+    <dimen name="components_margin_small">8dp</dimen>
+
+</resources>
