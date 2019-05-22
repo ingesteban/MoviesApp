@@ -10,13 +10,16 @@ import io.reactivex.Flowable
 @Dao
 interface MoviesDao{
 
-    @Query("Select * from movies  WHERE type > :type")
+    @Query("Select * from movies WHERE type = :type")
     fun getMoviesByType(type:String): Flowable<List<Movies>?>
+
+    @Query("Select * from movies")
+    fun getAllMovies(): Flowable<List<Movies>?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveAllMovies(movies: List<Movies>)
 
-    @Query("DELETE FROM movies")
-    fun clear()
+    @Query("DELETE FROM movies  WHERE type = :type")
+    fun clearByType(type:String)
 
 }

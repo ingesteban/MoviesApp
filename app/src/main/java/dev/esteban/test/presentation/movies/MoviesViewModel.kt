@@ -19,7 +19,8 @@ class MoviesViewModel(
     private val listMoviesUC: ListMoviesUC,
     private val back: Scheduler,
     private val front: Scheduler,
-    private val listMoviesLiveData: MutableLiveData<Resource<ResponseListMovies>>
+    private val listLocalMoviesLiveData: MutableLiveData<Resource<ResponseListMovies>>,
+    private val listRemoteMoviesLiveData: MutableLiveData<Resource<ResponseListMovies>>
 ): ViewModel() {
 
     // Bolsa de disposables
@@ -28,35 +29,59 @@ class MoviesViewModel(
     /**
      * Retorna la instancia del LiveData que controla el estado de la petición de películas
      */
-    fun getListMoviesState(): LiveData<Resource<ResponseListMovies>> {
-        return listMoviesLiveData
+    fun getlistLocalMoviesState(): LiveData<Resource<ResponseListMovies>> {
+        return listLocalMoviesLiveData
+    }
+
+    fun getlistRemoteMoviesState(): LiveData<Resource<ResponseListMovies>> {
+        return listRemoteMoviesLiveData
     }
 
     /**
-     * Genera la petición de peliculas de estreno
+     * Genera la petición de peliculas
      */
     fun getMovies(type:String){
-        disposeBag.add(listMoviesUC.getMovies(type)
+        disposeBag.add(listMoviesUC.getRemoteMovies(type)
             .doOnSubscribe {
-                listMoviesLiveData.setLoading()
+                listRemoteMoviesLiveData.setLoading()
             }
             .subscribeOn(back)
             .observeOn(front)
-            .subscribe({
-                onSuccess(it)
+            .subscribe({ response ->
+                response.results?.let {
+                    if(it.isEmpty()) {
+                        listRemoteMoviesLiveData.setError("La lista esta vacia")
+                    } else {
+                        listRemoteMoviesLiveData.setSuccess(response)
+                    }
+                }
             }, {error: Throwable ->
-                listMoviesLiveData.setError(error.message)
+                listRemoteMoviesLiveData.setError(error.message)
             })
         )
     }
 
-    private fun onSuccess(response : ResponseListMovies?) = response?.results?.let {
-        if(it.isEmpty()) {
-            listMoviesLiveData.setError("La lista esta vacia")
-        } else {
-            listMoviesLiveData.setSuccess(response)
-        }
+    fun getLocalMovies(type:String){
+        disposeBag.add(listMoviesUC.getLocalMovies(type)
+            .doOnSubscribe {
+                listLocalMoviesLiveData.setLoading()
+            }
+            .subscribeOn(back)
+            .observeOn(front)
+            .subscribe({ response ->
+                response.results?.let {
+                    if(it.isEmpty()) {
+                        listLocalMoviesLiveData.setError("La lista esta vacia")
+                    } else {
+                        listLocalMoviesLiveData.setSuccess(response)
+                    }
+                }
+            }, {error: Throwable ->
+                listLocalMoviesLiveData.setError("La lista esta vacia")
+            })
+        )
     }
+
 
     public override fun onCleared() {
         super.onCleared()

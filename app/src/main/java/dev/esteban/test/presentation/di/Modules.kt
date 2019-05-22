@@ -39,7 +39,8 @@ val viewModelModule: Module = module {
             listMoviesUC = get(LIST_MOVIES_UC),
             back = Schedulers.io(),
             front = AndroidSchedulers.mainThread(),
-            listMoviesLiveData = MutableLiveData()
+            listLocalMoviesLiveData = MutableLiveData(),
+            listRemoteMoviesLiveData = MutableLiveData()
         )
     }
     viewModel {
@@ -86,15 +87,13 @@ val repositoriesModule: Module = module {
     factory(MOVIES_REPOSITORY_IMPL) {
         MoviesRepositoryImpl(
             remote = get(MOVIES_REMOTE_IMPL),
-            cache = get(MOVIES_CACHE_IMPL),
-            moviesDataMapper = get(MOVIES_DATA_MAPPER)
+            cache = get(MOVIES_CACHE_IMPL)
         ) as MoviesRepository
     }
 
     factory(MOVIES_REMOTE_IMPL) { MoviesRemoteImpl(LIST_MOVIES_DATABASE) }
     factory(MOVIES_CACHE_IMPL) {
         MoviesCacheImpl(
-            database = get(DATABASE),
             moviesDataMapper = get(MOVIES_DATA_MAPPER)
         )
     }
@@ -113,9 +112,6 @@ val mappersModule: Module = module {
 val utilsModule: Module = module {
     factory { MoviesAdapter() }
     factory { MovieVideosAdapter() }
-    single(DATABASE) {
-        Room.databaseBuilder(androidApplication(), MoviesDatabase::class.java, "movies_db").build()
-    }
 }
 
 private val retrofit: Retrofit = ManagerNetwork(TestApp.applicationContext().applicationContext).getTheMovieRetrofit()
@@ -135,6 +131,3 @@ private val MOVIES_CACHE_IMPL = named("MOVIES_CACHE_IMPL")
 
 // Mappers Module
 private val MOVIES_DATA_MAPPER = named("MOVIES_DATA_MAPPER")
-
-// Utils Module
-private val DATABASE = named("DATABASE")

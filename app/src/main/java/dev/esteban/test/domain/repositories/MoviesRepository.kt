@@ -9,7 +9,6 @@ interface MoviesRepository {
 
     fun getLocalMovies(type:String = ""): Flowable<ResponseListMovies>
     fun getRemoteMovies(type:String = ""): Flowable<ResponseListMovies>
-    fun getMovies(type:String = ""): Flowable<ResponseListMovies>
     fun getMovieById(id:Int): Flowable<Movies>
     fun getMovieVideosById(id:Int): Flowable<ResponseListMovieVideos>
 

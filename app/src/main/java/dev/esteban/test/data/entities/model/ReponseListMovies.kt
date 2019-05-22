@@ -28,7 +28,7 @@ data class Movies(
     @field:Json(name = "adult")
     val adult: Boolean = false,
     @field:Json(name = "backdrop_path")
-    val backdropPath: String = "",
+    val backdropPath: String? = "",
     @field:Json(name = "original_language")
     val originalLanguage: String = "",
     @field:Json(name = "original_title")
@@ -38,7 +38,7 @@ data class Movies(
     @field:Json(name = "popularity")
     val popularity: Double = 0.0,
     @field:Json(name = "poster_path")
-    val posterPath: String = "",
+    val posterPath: String? = "",
     @field:Json(name = "release_date")
     val releaseDate: String = "",
     @field:Json(name = "title")
@@ -50,7 +50,7 @@ data class Movies(
     @field:Json(name = "vote_count")
     val voteCount: Int = 0,
     @field:Json(name = "type")
-    val type:String = ""
+    var type:String = ""
 )
 
 data class Dates(

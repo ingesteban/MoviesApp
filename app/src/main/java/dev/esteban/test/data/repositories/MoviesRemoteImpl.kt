@@ -11,9 +11,15 @@ class MoviesRemoteImpl constructor(private val api: MoviesApi) {
 
     fun getMovies(type: String): Flowable<ResponseListMovies> {
         return when (type) {
-            TopRated -> api.getTopRated()
-            Popular -> api.getPopular()
-            Upcoming -> api.getUpcoming()
+            TopRated -> {
+                api.getTopRated()
+            }
+            Popular -> {
+                api.getPopular()
+            }
+            Upcoming -> {
+                api.getUpcoming()
+            }
             else -> api.getTopRated()
         }
     }

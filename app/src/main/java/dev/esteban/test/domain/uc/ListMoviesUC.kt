@@ -14,7 +14,14 @@ class ListMoviesUC(
     /**
      * Retorna el Observable encargado de realizar la petición Http al servicio de estrenos
      */
-    fun getMovies(type:String): Flowable<ResponseListMovies> {
+    fun getLocalMovies(type:String): Flowable<ResponseListMovies> {
+        return moviesRepository.getLocalMovies(type)
+    }
+
+    /**
+     * Retorna el Observable encargado de realizar la petición Http al servicio de estrenos
+     */
+    fun getRemoteMovies(type:String): Flowable<ResponseListMovies> {
         return moviesRepository.getRemoteMovies(type)
     }
 }

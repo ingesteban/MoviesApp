@@ -25,6 +25,10 @@ class MoviesActivity : BaseActivity() {
         private var TopRated = "top_rated"
         private var Upcoming = "upcoming"
         private var Popular = "popular"
+        private var Local = "Local"
+        private var Remote = "Remote"
+        private var currentListShowed = TopRated
+
     }
 
     override fun getLayoutId(): Int {
@@ -40,36 +44,47 @@ class MoviesActivity : BaseActivity() {
         listRvMovies.adapter = moviesAdapter
         listRvMovies.layoutManager = linearManager
 
-        listMoviesVM.getMovies(TopRated)
+        listMoviesVM.getMovies(currentListShowed)
         supportActionBar?.title = getString(R.string.button_top_rated)
 
         button_top_rated.setOnClickListener {
-            listMoviesVM.getMovies(TopRated)
+            currentListShowed = TopRated
+            listMoviesVM.getMovies(currentListShowed)
             supportActionBar?.title = getString(R.string.button_top_rated)
         }
 
         button_upcoming.setOnClickListener {
-            listMoviesVM.getMovies(Upcoming)
+            currentListShowed = Upcoming
+            listMoviesVM.getMovies(currentListShowed)
             supportActionBar?.title = getString(R.string.button_upcoming)
         }
 
         button_popular.setOnClickListener {
-            listMoviesVM.getMovies(Popular)
+            currentListShowed = Popular
+            listMoviesVM.getMovies(currentListShowed)
             supportActionBar?.title = getString(R.string.button_popular)
         }
 
     }
 
     private fun initObservers() {
-        //Observador del request init
-        listMoviesVM.getListMoviesState().observe(this, Observer { render(it) })
+        listMoviesVM.getlistLocalMoviesState().observe(this, Observer { render(it, Local) })
+        listMoviesVM.getlistRemoteMoviesState().observe(this, Observer { render(it, Remote) })
     }
 
-    private fun render(it: Resource<ResponseListMovies>?) {
+    private fun render(it: Resource<ResponseListMovies>?, from:String) {
         when (it?.state) {
             ResourceState.LOADING -> listPbLoading.visibility = View.VISIBLE
             ResourceState.SUCCESS -> showData(it)
-            ResourceState.ERROR -> showEmptyData()
+            ResourceState.ERROR -> error(from)
+        }
+    }
+
+    private fun error(from:String){
+        if(from == Local){
+            showEmptyData()
+        } else {
+            listMoviesVM.getLocalMovies(currentListShowed)
         }
     }
 
